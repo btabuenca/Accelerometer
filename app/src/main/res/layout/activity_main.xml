@@ -13,13 +13,13 @@
         android:layout_gravity="center"
         android:layout_marginBottom="10dp"
         android:text="Max Acceleration"
-        android:textSize="24sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="X-Axis"
         android:textSize="15dp" />
 
@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:text="0.0"
         android:textSize="20dp" />
 
@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="Y-Axis"
         android:textSize="15dp" />
 
@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:text="0.0"
         android:textSize="20dp" />
 
@@ -53,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="Z-Axis"
         android:textSize="15dp" />
 
@@ -62,7 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:text="0.0"
         android:textSize="20dp" />
 
@@ -77,16 +77,28 @@
         android:id="@+id/buttonReset"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Reset" />
+        android:text="Reset screen data" />
+
+    <Button
+        android:id="@+id/buttonSaveMax"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save max acceleration" />
+
+    <Button
+        android:id="@+id/buttonSaveCurrent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save current time" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:text="Current Acceleration"
-        android:textSize="24sp" />
+        android:textSize="20sp" />
 
     <LinearLayout
         android:layout_width="match_parent"

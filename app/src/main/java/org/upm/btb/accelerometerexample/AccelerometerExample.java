@@ -13,6 +13,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+
 public class AccelerometerExample extends Activity implements SensorEventListener {
 
 	private static final String TAG = "btb";
@@ -35,7 +46,7 @@ public class AccelerometerExample extends Activity implements SensorEventListene
 	public Vibrator v;
 
 	private TextView currentX, currentY, currentZ, maxX, maxY, maxZ;
-	private Button butReset;
+	private Button butReset, butSaveMax, butSaveCurrent;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -71,8 +82,8 @@ public class AccelerometerExample extends Activity implements SensorEventListene
 		maxY = (TextView) findViewById(R.id.maxY);
 		maxZ = (TextView) findViewById(R.id.maxZ);
 
+		// Reset button listener
 		butReset = (Button) findViewById(R.id.buttonReset);
-
 		butReset.setOnClickListener(new View.OnClickListener(){
 			public void onClick(View view) {
 				deltaXMax = 0;
@@ -88,6 +99,44 @@ public class AccelerometerExample extends Activity implements SensorEventListene
 
 			}
 		});
+
+		// Save max button listener
+		butSaveMax = (Button) findViewById(R.id.buttonSaveMax);
+		butSaveMax.setOnClickListener(new View.OnClickListener(){
+			public void onClick(View view) {
+
+				// update values on FireBase realtime database
+				// See documentation on how to save data in realtime database
+				// https://firebase.google.com/docs/database/admin/save-data
+				FirebaseDatabase database = FirebaseDatabase.getInstance();
+				DatabaseReference myRef = database.getReference("valoresmaximos");
+				Map<String,Object> m = new HashMap<>();
+				m.put("x", deltaXMax);
+				m.put("y", deltaYMax);
+				m.put("z", deltaZMax);
+				myRef.setValue(m);
+
+
+			}
+		});
+
+		// Reset button listener
+		butSaveCurrent = (Button) findViewById(R.id.buttonSaveCurrent);
+		butSaveCurrent.setOnClickListener(new View.OnClickListener(){
+			public void onClick(View view) {
+				FirebaseDatabase database = FirebaseDatabase.getInstance();
+				DatabaseReference myUsersRef = database.getReference();
+				Date d = new Date();
+				SimpleDateFormat sm = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+				String strDate = sm.format(d);
+				myUsersRef.child("botonazos").push().setValue(strDate);
+
+			}
+		});
+
+
+
+
 
 	}
 
@@ -185,6 +234,7 @@ public class AccelerometerExample extends Activity implements SensorEventListene
 			deltaZMax = deltaZ;
 			maxZ.setText(Float.toString(deltaZMax));
 		}
+
 	}
 
 }
