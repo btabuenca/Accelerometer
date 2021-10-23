@@ -83,13 +83,13 @@
         android:id="@+id/buttonSaveMax"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save max acceleration" />
+        android:text="Update max acceleration" />
 
     <Button
         android:id="@+id/buttonSaveCurrent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save current time" />
+        android:text="Add current time" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -129,7 +129,7 @@ public class AccelerometerExample extends Activity implements SensorEventListene
 				Date d = new Date();
 				SimpleDateFormat sm = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 				String strDate = sm.format(d);
-				myUsersRef.child("botonazos").push().setValue(strDate);
+				myUsersRef.child("horadelbotonazo").push().setValue(strDate);
 
 			}
 		});
