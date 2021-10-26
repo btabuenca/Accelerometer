@@ -29,6 +29,8 @@ public class AccelerometerExample extends Activity implements SensorEventListene
 	private static final String TAG = "btb";
 
 
+	FirebaseDatabase database;
+
 	private SensorManager sensorManager;
 	private Sensor accelerometer;
 
@@ -54,6 +56,7 @@ public class AccelerometerExample extends Activity implements SensorEventListene
 		setContentView(R.layout.activity_main);
 		initializeViews();
 
+		database = FirebaseDatabase.getInstance();
 		sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
 		if (sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) != null) {
@@ -108,7 +111,6 @@ public class AccelerometerExample extends Activity implements SensorEventListene
 				// update values on FireBase realtime database
 				// See documentation on how to save data in realtime database
 				// https://firebase.google.com/docs/database/admin/save-data
-				FirebaseDatabase database = FirebaseDatabase.getInstance();
 				DatabaseReference myRef = database.getReference("valoresmaximos");
 				Map<String,Object> m = new HashMap<>();
 				m.put("x", deltaXMax);
