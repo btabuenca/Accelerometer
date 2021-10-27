@@ -28,7 +28,6 @@ public class AccelerometerExample extends Activity implements SensorEventListene
 
 	private static final String TAG = "btb";
 
-
 	FirebaseDatabase database;
 
 	private SensorManager sensorManager;
@@ -126,13 +125,11 @@ public class AccelerometerExample extends Activity implements SensorEventListene
 		butSaveCurrent = (Button) findViewById(R.id.buttonSaveCurrent);
 		butSaveCurrent.setOnClickListener(new View.OnClickListener(){
 			public void onClick(View view) {
-				FirebaseDatabase database = FirebaseDatabase.getInstance();
 				DatabaseReference myUsersRef = database.getReference();
 				Date d = new Date();
 				SimpleDateFormat sm = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 				String strDate = sm.format(d);
-				myUsersRef.child("horadelbotonazo").push().setValue(strDate);
-
+				myUsersRef.child("timestamps").push().setValue(strDate);
 			}
 		});
 
