@@ -17,11 +17,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 public class AccelerometerExample extends Activity implements SensorEventListener {
@@ -133,10 +130,6 @@ public class AccelerometerExample extends Activity implements SensorEventListene
 			}
 		});
 
-
-
-
-
 	}
 
 	//onResume() register the accelerometer to start listening to events
@@ -163,7 +156,7 @@ public class AccelerometerExample extends Activity implements SensorEventListene
 		displayCleanValues();
 		// display the current x,y,z accelerometer values
 		displayCurrentValues();
-		// display the max x,y,z accelerometer values
+		// display the max x,y,z accelerometer values when applicable
 		displayMaxValues();
 
 		// get the change of the x,y,z values of the accelerometer
@@ -172,12 +165,9 @@ public class AccelerometerExample extends Activity implements SensorEventListene
 		deltaZ = Math.abs(lastZ - event.values[2]);
 
 		// if the change is below 2, it is just plain noise. Discard it!
-		if (deltaX < 2)
-			deltaX = 0;
-		if (deltaY < 2)
-			deltaY = 0;
-		if (deltaZ < 2)
-			deltaZ = 0;
+		if (deltaX < 2) deltaX = 0;
+		if (deltaY < 2) deltaY = 0;
+		if (deltaZ < 2) deltaZ = 0;
 
 		// set the last know values of x,y,z
 		lastX = event.values[0];
