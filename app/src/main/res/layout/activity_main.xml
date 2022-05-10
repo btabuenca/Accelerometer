@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="10dp"
-        android:text="Max Acceleration"
+        android:text="Max acceleration"
         android:textSize="20sp" />
 
     <TextView
@@ -77,27 +77,16 @@
         android:id="@+id/buttonReset"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Reset screen data" />
-
-    <Button
-        android:id="@+id/buttonSaveMax"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Store max into Firebase db" />
-
-    <Button
-        android:id="@+id/buttonSaveCurrent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add current time" />
+        android:text="Reset max values" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:text="Current Acceleration"
+        android:text="Current acceleration"
+        android:background="#ffacdced"
         android:textSize="20sp" />
 
     <LinearLayout

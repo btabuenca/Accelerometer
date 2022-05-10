@@ -13,19 +13,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
-public class AccelerometerExample extends Activity implements SensorEventListener {
+public class MainActivity extends Activity implements SensorEventListener {
 
 	private static final String TAG = "btb";
-
-	FirebaseDatabase database;
 
 	private SensorManager sensorManager;
 	private Sensor accelerometer;
@@ -52,7 +43,6 @@ public class AccelerometerExample extends Activity implements SensorEventListene
 		setContentView(R.layout.activity_main);
 		initializeViews();
 
-		database = FirebaseDatabase.getInstance();
 		sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
 		if (sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) != null) {
@@ -99,36 +89,7 @@ public class AccelerometerExample extends Activity implements SensorEventListene
 			}
 		});
 
-		// Save max button listener
-		butSaveMax = (Button) findViewById(R.id.buttonSaveMax);
-		butSaveMax.setOnClickListener(new View.OnClickListener(){
-			public void onClick(View view) {
 
-				// update values on FireBase realtime database
-				// See documentation on how to save data in realtime database
-				// https://firebase.google.com/docs/database/admin/save-data
-				DatabaseReference myRef = database.getReference("valoresmaximos");
-				Map<String,Object> m = new HashMap<>();
-				m.put("x", deltaXMax);
-				m.put("y", deltaYMax);
-				m.put("z", deltaZMax);
-				myRef.setValue(m);
-
-
-			}
-		});
-
-		// Reset button listener
-		butSaveCurrent = (Button) findViewById(R.id.buttonSaveCurrent);
-		butSaveCurrent.setOnClickListener(new View.OnClickListener(){
-			public void onClick(View view) {
-				DatabaseReference myUsersRef = database.getReference();
-				Date d = new Date();
-				SimpleDateFormat sm = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-				String strDate = sm.format(d);
-				myUsersRef.child("timestamps").push().setValue(strDate);
-			}
-		});
 
 	}
 

@@ -1,8 +1,5 @@
 apply plugin: 'com.android.application'
 
-// added for firebase
-apply plugin: 'com.google.gms.google-services'
-
 android {
     compileSdkVersion 30
 
@@ -23,10 +20,4 @@ android {
 dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
-    // Added for firebase
-    implementation platform('com.google.firebase:firebase-bom:28.4.2')
-
-    // Declare the dependency for the Realtime Database library
-    // When using the BoM, you don't specify versions in Firebase library dependencies
-    implementation 'com.google.firebase:firebase-database'
 }
