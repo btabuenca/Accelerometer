@@ -1,3 +1,4 @@
 # Accelerometer
-Android app showing sensor data from mobile accelrometer. 
-Features 2 realtime database collections to store max acceleration values and timestamp.
+SensorManager usage example. Android app showing sensor data for mobile accelerometer. 
+
+Version PAS 2024 for Android Java and Kotlin DSL build.gradle.kts
