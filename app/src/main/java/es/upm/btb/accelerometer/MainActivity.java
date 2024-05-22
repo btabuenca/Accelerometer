@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-
 public class MainActivity extends Activity implements SensorEventListener {
 
     private static final String TAG = "btb";
@@ -35,7 +34,8 @@ public class MainActivity extends Activity implements SensorEventListener {
     public Vibrator v;
 
     private TextView currentX, currentY, currentZ, maxX, maxY, maxZ;
-    private Button butReset, butSaveMax, butSaveCurrent;
+    private TextView sensorName, sensorType, maxRange, resolution;
+    private Button butReset;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,6 +49,16 @@ public class MainActivity extends Activity implements SensorEventListener {
             Log.e(TAG, "Success! we have an accelerometer");
 
             accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+            String sensorNameStr = accelerometer.getName();
+            int sensorTypeInt = accelerometer.getType();
+            float maxRangeFloat = accelerometer.getMaximumRange();
+            float resolutionFloat = accelerometer.getResolution();
+
+            sensorName.setText("Sensor Name: " + sensorNameStr);
+            sensorType.setText("Sensor Type: " + sensorTypeInt);
+            maxRange.setText("Max Range: " + maxRangeFloat);
+            resolution.setText("Resolution: " + resolutionFloat);
+
             sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
             vibrateThreshold = accelerometer.getMaximumRange() / 2;
 
@@ -59,7 +69,6 @@ public class MainActivity extends Activity implements SensorEventListener {
 
         // Initialize vibration
         v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
-
     }
 
     public void initializeViews() {
@@ -70,6 +79,11 @@ public class MainActivity extends Activity implements SensorEventListener {
         maxX = (TextView) findViewById(R.id.maxX);
         maxY = (TextView) findViewById(R.id.maxY);
         maxZ = (TextView) findViewById(R.id.maxZ);
+
+        sensorName = (TextView) findViewById(R.id.sensorName);
+        sensorType = (TextView) findViewById(R.id.sensorType);
+        maxRange = (TextView) findViewById(R.id.maxRange);
+        resolution = (TextView) findViewById(R.id.resolution);
 
         // Reset button listener
         butReset = (Button) findViewById(R.id.buttonReset);
@@ -85,21 +99,17 @@ public class MainActivity extends Activity implements SensorEventListener {
 
                 // display empty values
                 displayReset();
-
             }
         });
-
-
-
     }
 
-    //onResume() register the accelerometer to start listening to events
+    // onResume() register the accelerometer to start listening to events
     protected void onResume() {
         super.onResume();
         sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
-    //onPause() unregister the accelerometer to stop listening to events
+    // onPause() unregister the accelerometer to stop listening to events
     protected void onPause() {
         super.onPause();
         sensorManager.unregisterListener(this);
@@ -107,12 +117,10 @@ public class MainActivity extends Activity implements SensorEventListener {
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
     }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-
         // clean current values
         displayCleanValues();
         // display the current x,y,z accelerometer values
@@ -136,7 +144,6 @@ public class MainActivity extends Activity implements SensorEventListener {
         lastZ = event.values[2];
 
         vibrate();
-
     }
 
     // if the change in the accelerometer value is big enough, then vibrate!
@@ -184,7 +191,5 @@ public class MainActivity extends Activity implements SensorEventListener {
             deltaZMax = deltaZ;
             maxZ.setText(Float.toString(deltaZMax));
         }
-
     }
-
 }
